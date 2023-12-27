@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:match_time/domain/teams_matches_controller.dart';
 import 'package:match_time/my_theme.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,8 @@ class SettingsScreen extends StatelessWidget {
             s: 'Privacy Policy',
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
+                //TODO:
+
                 builder: (context) => Scr(n: ''),
               ),
             ),
@@ -46,6 +49,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           Tile(
             s: 'Share app',
+            //TODO:
+
             onPressed: () {},
             path: 'images/svg/share.svg',
           ),
@@ -53,6 +58,8 @@ class SettingsScreen extends StatelessWidget {
             s: 'Terms of Use',
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
+                //TODO:
+
                 builder: (context) => Scr(n: ''),
               ),
             ),
@@ -60,7 +67,9 @@ class SettingsScreen extends StatelessWidget {
           ),
           Tile(
             s: 'Rate app',
-            onPressed: () {},
+            onPressed: () =>
+                //TODO:
+                InAppReview.instance.openStoreListing(appStoreId: ''),
             path: 'images/svg/rate.svg',
           ),
         ],
