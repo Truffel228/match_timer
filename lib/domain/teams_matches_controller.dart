@@ -52,4 +52,12 @@ class TeamsMatchesController extends ChangeNotifier {
     _cacheTeams();
     notifyListeners();
   }
+
+  void reset() {
+    matches.clear();
+    teams.clear();
+    _cacheMatches();
+    _cacheTeams();
+    notifyListeners();
+  }
 }

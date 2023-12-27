@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:match_time/my_button.dart';
 import 'package:match_time/my_router.dart';
 import 'package:match_time/my_theme.dart';
@@ -23,11 +24,33 @@ class _InitialScreenState extends State<InitialScreen> {
 
   Future<void> _startApp() async {
     final prefes = await SharedPreferences.getInstance();
+    rr(prefes);
+    final firstSesstion = prefes.getBool('firstSession') ?? true;
+    if (firstSesstion) {
+      setState(() {
+        _waiting = false;
+      });
+      return;
+    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.go(MyRouter.matches);
+    });
+  }
+
+  Future<void> rr(SharedPreferences shPre) async {
+    final rev = InAppReview.instance;
+    bool alreadyRated = shPre.getBool('rate') ?? false;
+    if (!alreadyRated) {
+      if (await rev.isAvailable()) {
+        rev.requestReview();
+        await shPre.setBool('rate', true);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (false) {
+    if (_waiting) {
       return Scaffold(
         body: Center(
           child: CircularProgressIndicator(
@@ -36,7 +59,7 @@ class _InitialScreenState extends State<InitialScreen> {
         ),
       );
     }
-    return FirstSession();
+    return const FirstSession();
   }
 }
 
