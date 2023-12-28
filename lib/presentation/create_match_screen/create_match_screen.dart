@@ -35,11 +35,27 @@ class CreateMatchScreen extends StatefulWidget {
 }
 
 class _CreateMatchScreenState extends State<CreateMatchScreen> {
+  late final TeamsMatchesController _tmController;
   LocalTeam? _yourTeam;
   LocalTeam? _enemyTeam;
 
   DateTime? _date;
   DateTime? _time;
+
+  @override
+  void initState() {
+    super.initState();
+    _tmController = context.read<TeamsMatchesController>()
+      ..addListener(_update);
+  }
+
+  @override
+  void dispose() {
+    _tmController.removeListener(_update);
+    super.dispose();
+  }
+
+  void _update() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -315,7 +331,22 @@ class _CreateMatchScreenState extends State<CreateMatchScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    if (_tmController.teams.isEmpty) ...[
+                      const SizedBox(height: 20),
+                      const Text(
+                        'You dont have any teams yet, create it!',
+                        style: TextStyle(
+                          color: MyTheme.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                    const Spacer(),
+                    MyButton(
+                      title: 'Create Team',
+                      onTap: () => context.pushNamed(MyRouter.createTeam),
+                    ),
+                    const Spacer(),
                     MyButton(
                       title: 'Start match',
                       onTap: () {
@@ -342,10 +373,11 @@ class _CreateMatchScreenState extends State<CreateMatchScreen> {
                           homeGoals: 0,
                           awayGoals: 0,
                         );
-                        context.read<TeamsMatchesController>().addMatch(match);
+                        _tmController.addMatch(match);
                         context.pop();
                       },
                     ),
+                    const Spacer(),
                   ],
                 ),
               ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:match_time/data/models/local/local_match.dart';
 import 'package:match_time/domain/teams_matches_controller.dart';
-import 'package:match_time/my_router.dart';
 import 'package:match_time/my_theme.dart';
 import 'package:match_time/presentation/matches_screen/matches_screen.dart';
 import 'package:provider/provider.dart';
@@ -146,11 +144,17 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
         _tmController.matches
                 .where((element) => element.dateTime.equal(_pickedDateTime))
                 .isEmpty
-            ? SliverFillRemaining(
+            ? const SliverFillRemaining(
                 hasScrollBody: false,
                 child: Center(
-                  child: CircularProgressIndicator(
-                    color: context.theme.primaryColor,
+                  child: Text(
+                    'No matches on this date',
+                    style: TextStyle(
+                      color: MyTheme.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               )
@@ -160,11 +164,7 @@ class _MyMatchesScreenState extends State<MyMatchesScreen> {
                   itemCount: _tmController.matches.length,
                   itemBuilder: (context, index) {
                     final match = _tmController.matches[index];
-                    return GestureDetector(
-                      onTap: () =>
-                          context.pushNamed(MyRouter.matchDetail, extra: match),
-                      child: LocalFootballMatchItem(match: match),
-                    );
+                    return LocalFootballMatchItem(match: match);
                   },
                 ),
               ),

@@ -4,12 +4,14 @@ class ActionNew {
     required this.title,
     required this.subtitle,
     required this.dateTime,
+    this.vid = '',
   });
 
   final String img;
   final String title;
   final String subtitle;
   final DateTime dateTime;
+  final String vid;
 }
 
 final List<ActionNew> actions = [
@@ -69,6 +71,7 @@ final List<ActionNew> community = [
     subtitle:
         "It's clear that the 21-year-old has no future at Signal Iduna Park, and prolonging this bad marriage will only cause more damage to his career\n\nGio Reyna looked destined for superstardom when he left his family behind in New York to chase the European dream at Borussia Dortmund in 2019. The 16-year-old showed bravery and maturity belying his tender age by stepping out of his comfort zone, and it was no surprise when he broke into the BVB senior squad the following January.",
     dateTime: DateTime(2023, 12, 27),
+    vid: 'byLmcEX8MoI',
   ),
   ActionNew(
     img:
@@ -78,6 +81,7 @@ final List<ActionNew> community = [
     subtitle:
         "The Argentine dragged the dishevelled Red Devils back from two goals down to earn Erik ten Hag's side a rousing comeback win\n\nAlejandro Garnacho was already a much-loved figure among Manchester United fans, but now he is an idol. When everyone around him looked shot on confidence, the Argentine believed. And he dragged his team back from the dead against Aston Villa and towards an epic victory.",
     dateTime: DateTime(2023, 12, 27),
+    vid: 'JXaaH7r7ANk',
   ),
   ActionNew(
     img:
@@ -87,6 +91,7 @@ final List<ActionNew> community = [
     subtitle:
         "There was plenty of big spending in England over the summer, but only some arrivals have taken to life at their new clubs\n\nThe 2023 summer transfer window was another record-breaking moment for Premier League clubs. All in all, the 20 top-flight sides spent over £2 billion (\$2.5bn) on new players, smashing the previous all-time highest tally from the previous year.",
     dateTime: DateTime(2023, 12, 26),
+    vid: 'pmnn6jV02xY',
   ),
   ActionNew(
     img:
@@ -96,6 +101,7 @@ final List<ActionNew> community = [
     subtitle:
         'Wrexham boss Phil Parkinson has revealed why he did not bring Paul Mullin off the bench during their "tense" 1-0 win over Swindon Town.',
     dateTime: DateTime(2023, 12, 26),
+    vid: 'PAoZvEfkcvs',
   ),
   ActionNew(
     img:
@@ -105,5 +111,6 @@ final List<ActionNew> community = [
     subtitle:
         "https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/bltdf9b8910f7e4ca05/658c255fd1e5b704078c024d/GOAL_-_Multiple_Images_-_2_Split_-_Facebook_(14).png?auto=webp&format=pjpg&width=1200&quality=60",
     dateTime: DateTime(2023, 12, 26),
+    vid: '9OKEGWRaGTw',
   ),
 ];

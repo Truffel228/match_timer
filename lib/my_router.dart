@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:match_time/data/models/action.dart';
 import 'package:match_time/data/models/match.dart';
+import 'package:match_time/presentation/community_detail_screen/community_detail_screen.dart';
 import 'package:match_time/presentation/community_screen/community_screen.dart';
 import 'package:match_time/presentation/create_match_screen/create_match_screen.dart';
 import 'package:match_time/presentation/create_team_screen/create_team_screen.dart';
@@ -82,6 +83,12 @@ class MyRouter {
                 name: community,
                 builder: (context, state) => const CommunityScreen(),
               ),
+              GoRoute(
+                path: communityDetail,
+                name: communityDetail,
+                builder: (context, state) =>
+                    CommunityDetailScreen(action: state.extra as ActionNew),
+              ),
             ],
           ),
           StatefulShellBranch(
@@ -108,5 +115,6 @@ class MyRouter {
   static const String news = '/news';
   static const String newsDetail = '/newsDetail';
   static const String community = '/community';
+  static const String communityDetail = '/communityDetail';
   static const String settings = '/settings';
 }

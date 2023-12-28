@@ -17,16 +17,18 @@ class TeamsMatchesController extends ChangeNotifier {
 
   void init() {
     final jsonMatches = _preferences.getString(matchesKey) ?? '';
-    if (jsonMatches.isEmpty) {
-      return;
+    if (jsonMatches.isNotEmpty) {
+      final cachedMatches = jsonDecode(jsonMatches) as List<dynamic>;
+      matches = cachedMatches.map((e) => LocalMatch.fromJson(e)).toList();
+      notifyListeners();
     }
-    final cachedMatches = jsonDecode(jsonMatches) as List<dynamic>;
-    matches = cachedMatches.map((e) => LocalMatch.fromJson(e)).toList();
 
     final jsonTeams = _preferences.getString(teamsKey) ?? '';
-    final cachedTeams = jsonDecode(jsonTeams) as List<dynamic>;
-    teams = cachedTeams.map((e) => LocalTeam.fromJson(e)).toList();
-    notifyListeners();
+    if (jsonTeams.isNotEmpty) {
+      final cachedTeams = jsonDecode(jsonTeams) as List<dynamic>;
+      teams = cachedTeams.map((e) => LocalTeam.fromJson(e)).toList();
+      notifyListeners();
+    }
   }
 
   void _cacheMatches() {
